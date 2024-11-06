@@ -2,6 +2,7 @@ package edu.ncsu.csc216.wolf_tracker.model.util;
 
 /**
  * A custom list where values in the list are automatically sorted. In this case, tasks are sorted based on their names
+ * @author Cole Hincken
  * @param <E> the element type to be added. 
  */
 public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
