@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
  * Tests the ProjectReader class
  * @author Cole Hincken
  */
-class ProjectReaderTest {
+public class ProjectReaderTest {
 
 	/**
 	 * Tests the readProjectFile method
 	 */
 	@Test
-	void testReadProjectFile() {
+	public void testReadProjectFile() {
 		fail("Not yet implemented");
 	}
 
