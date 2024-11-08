@@ -31,6 +31,7 @@ public class Task {
 		setTaskTitle(taskTitle);
 		setTaskDuration(taskDuration);
 		setTaskDetails(taskDetails);
+		category = null;
 	}
 
 	/** Gets the name of the task
@@ -42,8 +43,12 @@ public class Task {
 
 	/** Sets the name of the Task
 	 * @param taskTitle the title to set
+	 * @throws IllegalArgumentException if taskTitle is null or empty
 	 */
 	public void setTaskTitle(String taskTitle) {
+		if (taskTitle == null || taskTitle.isEmpty()) {
+			throw new IllegalArgumentException("Incomplete task information.");
+		}
 		this.taskTitle = taskTitle;
 	}
 
@@ -56,8 +61,12 @@ public class Task {
 
 	/** Sets the duration field to the parameter value
 	 * @param taskDuration the taskDuration to set
+	 * @throws IllegalArgumentException if duration is less than 1
 	 */
 	public void setTaskDuration(int taskDuration) {
+		if (taskDuration < 1) {
+			throw new IllegalArgumentException("Incomplete task information.");
+		}
 		this.taskDuration = taskDuration;
 	}
 
@@ -70,17 +79,25 @@ public class Task {
 
 	/** sets the details field to the parameter value
 	 * @param taskDetails the taskDetails to set
+	 * @throws IllegalArgumentException if details are null or empty
 	 */
 	public void setTaskDetails(String taskDetails) {
+		if (taskDetails == null || taskDetails.isEmpty()) {
+			throw new IllegalArgumentException("Incomplete task information.");
+		}
 		this.taskDetails = taskDetails;
 	}
 	
 	/**
-	 * Adds a category to the category list
+	 * Adds a category to the task
 	 * @param categoryLog a category
+	 * @throws IllegalArgumentException if parameter is null or category is already assigned.
 	 */
 	public void addCategory(CategoryLog categoryLog) {
-		
+		if (categoryLog == null || this.category != null) {
+			throw new IllegalArgumentException("Incomplete task information.");
+		}
+		this.category = categoryLog;
 	}
 	
 	/**
@@ -88,7 +105,10 @@ public class Task {
 	 * @return name of category
 	 */
 	public String getCategoryName() {
-		return null;
+		if (category == null) {
+			return "";
+		}
+		return category.getName();
 	}
 	
 	/**
@@ -96,7 +116,7 @@ public class Task {
 	 * @return a string of all task information
 	 */
 	public String toString() {
-		return null;
+		return "* " + taskTitle + "," + taskDuration + "," + category.toString() + "\n" + taskDetails;
 	}
 	
 }

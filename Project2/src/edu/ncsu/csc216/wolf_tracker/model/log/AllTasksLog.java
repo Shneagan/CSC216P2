@@ -32,6 +32,5 @@ public class AllTasksLog extends AbstractTaskLog {
 	 * @param taskLogName the name to be set to
 	 */
 	public void setTaskLogName(String taskLogName) {
-		
-	}
+			}
 }

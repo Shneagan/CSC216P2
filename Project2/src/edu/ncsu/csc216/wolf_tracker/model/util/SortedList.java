@@ -25,9 +25,14 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	/**
 	 * Adds an element to the list, and is automatically sorted
 	 * @param element the value to be added
+	 * @throws NullPointerException if parameter is null
+	 * @throws IllegalArgumentException if the parameter element already exists in the list
 	 */
 	@Override
 	public void add(E element) {
+		if (element == null) {
+			throw new NullPointerException("Cannot add null element.");
+		}
 		
 	}
 

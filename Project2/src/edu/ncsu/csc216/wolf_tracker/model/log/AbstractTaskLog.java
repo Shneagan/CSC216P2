@@ -21,7 +21,8 @@ public abstract class AbstractTaskLog {
 	 * @param taskLogName the name of the task log
 	 */
 	public AbstractTaskLog(String taskLogName) {
-		
+		setTaskLogName(taskLogName);
+		tasks = new LogList<Task>();
 	}
 	
 	/**
@@ -35,9 +36,13 @@ public abstract class AbstractTaskLog {
 	/**
 	 * sets the name of the task log
 	 * @param taskLogName the name that the task log will be given
+	 * @throws IllegalArgumentException if name is empty or null
 	 */
 	public void setTaskLogName(String taskLogName) {
-		
+		if (taskLogName == null || taskLogName.isEmpty()) {
+			throw new IllegalArgumentException("Invalid name.");
+		}
+		this.taskLogName = taskLogName;
 	}
 	
 	/**
@@ -51,6 +56,7 @@ public abstract class AbstractTaskLog {
 	/**
 	 * adds a task to the list
 	 * @param t the task to be added
+	 * @throws NullPointerException if the task is null
 	 */
 	public void addTask(Task t) {
 		
