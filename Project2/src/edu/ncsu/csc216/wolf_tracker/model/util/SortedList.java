@@ -33,6 +33,25 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 		if (element == null) {
 			throw new NullPointerException("Cannot add null element.");
 		}
+        ListNode current = front;
+        ListNode previous = null;
+
+        while (current != null && element.compareTo(current.data) > 0) {
+            previous = current;
+            current = current.next;
+        }
+
+        if (current != null && element.compareTo(current.data) == 0) {
+            throw new IllegalArgumentException("Cannot add duplicate element.");
+        }
+
+        ListNode newNode = new ListNode(element, current);
+        if (previous == null) {
+            front = newNode;
+        } else {
+            previous.next = newNode;
+        }
+        size++;
 		
 	}
 
@@ -74,7 +93,14 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 */
 	@Override
 	public boolean contains(E element) {
-		return false;
+        ListNode current = front;
+        while (current != null) {
+            if (current.data.equals(element)) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
 	}
 
 	/**

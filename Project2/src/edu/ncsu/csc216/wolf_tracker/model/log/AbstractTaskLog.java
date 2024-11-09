@@ -107,7 +107,7 @@ public abstract class AbstractTaskLog {
 	 */
 	public int getMinDuration() {
 		int min = 10000000;
-
+		
 		return min;
 	}
 	
