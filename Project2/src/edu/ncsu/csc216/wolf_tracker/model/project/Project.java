@@ -2,11 +2,13 @@ package edu.ncsu.csc216.wolf_tracker.model.project;
 
 import java.io.File;
 
+import edu.ncsu.csc216.wolf_tracker.model.io.ProjectWriter;
 import edu.ncsu.csc216.wolf_tracker.model.log.AbstractTaskLog;
 import edu.ncsu.csc216.wolf_tracker.model.log.AllTasksLog;
 import edu.ncsu.csc216.wolf_tracker.model.log.CategoryLog;
 import edu.ncsu.csc216.wolf_tracker.model.task.Task;
 import edu.ncsu.csc216.wolf_tracker.model.util.ISortedList;
+import edu.ncsu.csc216.wolf_tracker.model.util.SortedList;
 
 /**
  * Contains all information about a project and holds controller methods that can add
@@ -33,9 +35,18 @@ public class Project {
 	/**
 	 * Constructs a project object
 	 * @param projectName name of the project
+	 * @throws IllegalArgumentException if projectname is null, empty, or matches the alltaskslog name
 	 */
 	public Project(String projectName) {
+		if (projectName == null || projectName.isEmpty() || projectName == AllTasksLog.ALL_TASKS_NAME) {
+			throw new IllegalArgumentException("Invalid name.");
+		}
+			
 		setProjectName(projectName);
+		categories = new SortedList<CategoryLog>();
+		allTasksLog = new AllTasksLog();
+		currentLog = allTasksLog;
+		isChanged = true;
 	}
 	
 	/**
@@ -43,7 +54,8 @@ public class Project {
 	 * @param projectFile the file to be written to
 	 */
 	public void saveProject(File projectFile) {
-		
+		ProjectWriter.writeProjectFile(projectFile, this);
+		isChanged = false;
 	}
 	
 	/**
@@ -51,7 +63,7 @@ public class Project {
 	 * @param statsFile file to be written to
 	 */
 	public void saveStats(File statsFile) {
-		
+		ProjectWriter.writeStatsFile(statsFile, this);
 	}
 	
 	/**
@@ -91,7 +103,10 @@ public class Project {
 	 * @param categoryName name of the category to be added
 	 */
 	public void addCategoryLog(String categoryName) {
-		
+		CategoryLog newLog = new CategoryLog(categoryName);
+		currentLog = newLog;
+		categories.add(newLog);
+		isChanged = true;
 	}
 	
 	/**
@@ -99,7 +114,7 @@ public class Project {
 	 * @return the currently viewed list
 	 */
 	public AbstractTaskLog getCurrentLog() {
-		return null;
+		return currentLog;
 	}
 	
 	/**
@@ -107,7 +122,7 @@ public class Project {
 	 * @param logName the log to be changed to 
 	 */
 	public void setCurrentTaskLog(String logName) {
-		
+
 	}
 	
 	/**
