@@ -22,7 +22,7 @@ public abstract class AbstractTaskLog {
 	 */
 	public AbstractTaskLog(String taskLogName) {
 		setTaskLogName(taskLogName);
-		tasks = new LogList<Task>();
+		this.tasks = new LogList<>();
 	}
 	
 	/**
@@ -56,37 +56,41 @@ public abstract class AbstractTaskLog {
 	/**
 	 * adds a task to the list
 	 * @param t the task to be added
-	 * @throws NullPointerException if the task is null
+	 * @throws NullPointerException if the task is null (thrown by ILogList)
 	 */
 	public void addTask(Task t) {
-		
+		tasks.addLog(t);
 	}
 	
 	/**
 	 * sets the value at the index in the list to a task object
 	 * @param index the list index where the task will be added
 	 * @param t the task to be added
+	 * @throws NullPointerException if t is null
+	 * @throws IndexOutOfBoundsException if index is negative or greater than size of the list
 	 */
 	public void setTask(int index, Task t) {
-		
+		tasks.setLog(index, t);
 	}
 	
 	/**
 	 * Removes a task from the index parameter position
 	 * @param index the index where the task will be removed
 	 * @return the task that is removed
+	 * @throws IndexOutOfBoundsException if the index is out of bounds for the size of the list
 	 */
 	public Task removeTask(int index) {
-		return null;
+		return tasks.removeLog(index);
 	}
 	
 	/**
 	 * gets the task at the certain index
 	 * @param index the index where the task we are finding exists
 	 * @return the task at the index parameter
+	 * @throws IndexOutOfBoundsException if the index is out of bounds
 	 */
 	public Task getTask(int index) {
-		return null;
+		return tasks.getLog(index);
 	}
 	
 	/**
@@ -94,7 +98,7 @@ public abstract class AbstractTaskLog {
 	 * @return integer number of tasks
 	 */
 	public int getTaskCount() {
-		return 0;
+		return tasks.size();
 	}
 	
 	/**
@@ -102,7 +106,9 @@ public abstract class AbstractTaskLog {
 	 * @return integer number of time (in minutes)
 	 */
 	public int getMinDuration() {
-		return 0;
+		int min = 10000000;
+
+		return min;
 	}
 	
 	/**

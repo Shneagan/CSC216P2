@@ -21,16 +21,20 @@ public class CategoryLog extends AbstractTaskLog implements Comparable<CategoryL
 	 * @param index the list index where the task will be added
 	 * @param t the task to be added
 	 */
+	@Override
 	public void setTask(int index, Task t) {
-		
+		super.setTask(index, t);
+		t.addCategory(this);
 	}
 	
 	/**
 	 * adds a task to the list
 	 * @param t the task to be added
 	 */
+	@Override
 	public void addTask(Task t) {
-		
+		super.addTask(t);
+		t.addCategory(this);
 	}
 
 	/**
@@ -41,8 +45,8 @@ public class CategoryLog extends AbstractTaskLog implements Comparable<CategoryL
 	 */
 	@Override
 	public int compareTo(CategoryLog o) {
-		// TODO Auto-generated method stub
-		return 0;
+        return this.getName().compareToIgnoreCase(o.getName());
+
 	}
 
 	

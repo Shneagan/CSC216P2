@@ -10,13 +10,6 @@ public class AllTasksLog extends AbstractTaskLog {
 	/** String that represents the name of the allTasksLog */
 	public static final String ALL_TASKS_NAME = "All Tasks";
 	
-	/**
-	 * Constructs the allTaskLog with the given parameter name. This constructor uses the AbstractTaskLog constructor to construct
-	 * @param taskLogName name of the task log
-	 */
-	public AllTasksLog(String taskLogName) {
-		super(taskLogName);
-	}
 	
 	/**
 	 * Default constructor for AllTasksLog
@@ -30,7 +23,12 @@ public class AllTasksLog extends AbstractTaskLog {
 	/**
 	 * Sets the allTaskLog's name to the parameter name
 	 * @param taskLogName the name to be set to
+	 * @throws IllegalArgumentException if taskLogName is not equal to ALL_TASKS_NAME
 	 */
 	public void setTaskLogName(String taskLogName) {
-			}
+        if (!ALL_TASKS_NAME.equals(taskLogName)) {
+            throw new IllegalArgumentException("The All Tasks list may not be edited.");
+        }
+        super.setTaskLogName(taskLogName);
+    }
 }
