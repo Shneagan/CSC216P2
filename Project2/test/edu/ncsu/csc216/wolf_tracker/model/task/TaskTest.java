@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+
 /**
  * tests the Task class
  * @author Cole Hincken
@@ -15,7 +16,12 @@ class TaskTest {
 	 */
 	@Test
 	void testTask() {
-		fail("Not yet implemented");
+		Task task = assertDoesNotThrow( () -> new Task("NewTask", 10, "Task Details"));
+		
+			assertAll("", 
+				() -> assertEquals("NewTask", task.getTaskTitle(), "incorrect name"), 
+				() -> assertEquals(10, task.getTaskDuration(), "incorrect duration"),
+				() -> assertEquals("Task Details", task.getTaskDetails(), "incorrect details"));					
 	}
 
 	/**
@@ -23,7 +29,9 @@ class TaskTest {
 	 */
 	@Test
 	void testGetTaskTitle() {
-		fail("Not yet implemented");
+		Task t = new Task("TaskName", 15, "TaskDetails");
+		assertEquals("TaskName", t.getTaskTitle());
+		
 	}
 
 	/**
@@ -31,7 +39,14 @@ class TaskTest {
 	 */
 	@Test
 	void testSetTaskTitle() {
-		fail("Not yet implemented");
+		Task t = new Task("TaskName", 15, "TaskDetails");
+		assertThrows(IllegalArgumentException.class, () -> t.setTaskTitle(null));
+		
+		assertThrows(IllegalArgumentException.class, () -> t.setTaskTitle(""));
+	
+		Task t2 = new Task("TaskName", 20, "TaskDetails");
+		t2.setTaskTitle("NewTaskTitle");
+		assertEquals("NewTaskTitle", t2.getTaskTitle());
 	}
 
 	/**
@@ -39,7 +54,8 @@ class TaskTest {
 	 */
 	@Test
 	void testGetTaskDuration() {
-		fail("Not yet implemented");
+		Task t = new Task("TaskName", 15, "TaskDetails");
+		assertEquals(15, t.getTaskDuration());
 	}
 
 	/**
@@ -47,8 +63,12 @@ class TaskTest {
 	 */
 	@Test
 	void testSetTaskDuration() {
-		fail("Not yet implemented");
+		Task t = new Task("TaskName", 15, "TaskDetails");
+		assertThrows(IllegalArgumentException.class, () -> t.setTaskDuration(-10));	
+		t.setTaskDuration(25);
+		assertEquals(25, t.getTaskDuration());
 	}
+	
 	
 	/**
 	 * Tests the getTaskDetails method
