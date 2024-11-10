@@ -107,7 +107,12 @@ public abstract class AbstractTaskLog {
 	 */
 	public int getMinDuration() {
 		int min = 10000000;
-		
+		for (int i = 0; i < tasks.size(); i++) {
+			Task t = tasks.getLog(i);
+			if (t.getTaskDuration() < min) {
+				min = t.getTaskDuration();
+			}
+		}
 		return min;
 	}
 	
@@ -116,7 +121,14 @@ public abstract class AbstractTaskLog {
 	 * @return integer number of time (in minutes)
 	 */
 	public int getMaxDuration() {
-		return 0;
+		int max = 0;
+		for (int i = 0; i < tasks.size(); i++) {
+			Task t = tasks.getLog(i);
+			if (t.getTaskDuration() > max) {
+				max = t.getTaskDuration();
+			}
+		}
+		return max;
 	}
 	
 	/**
@@ -124,7 +136,11 @@ public abstract class AbstractTaskLog {
 	 * @return a decimal number of time (in minutes)
 	 */
 	public double getAvgDuration() {
-		return 0.0;
+		int sum = 0;
+		for (int i = 0; i < tasks.size(); i++) {
+			sum += tasks.getLog(i).getTaskDuration();
+		}
+		return sum / tasks.size();
 	}
 	
 	/**
@@ -132,7 +148,13 @@ public abstract class AbstractTaskLog {
 	 * @return a 2D array that contains info on all the tasks
 	 */
 	public String[][] getTasksAsArray() {
-		return null;
+		String[][] taskArray = new String[tasks.size()][2];
+		for (int i = 0; i < tasks.size(); i++) {
+			taskArray[i][0] = tasks.getLog(i).getTaskTitle();
+			taskArray[i][1] = Integer.toString(tasks.getLog(i).getTaskDuration());
+			taskArray[i][2] = tasks.getLog(i).getCategoryName();
+		}
+		return taskArray;
 	}
 	
 	/**
