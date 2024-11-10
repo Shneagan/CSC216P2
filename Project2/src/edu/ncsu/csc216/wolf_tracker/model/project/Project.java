@@ -122,7 +122,17 @@ public class Project {
 	 * @param logName the log to be changed to 
 	 */
 	public void setCurrentTaskLog(String logName) {
-
+		boolean found = false;
+		for (int i = 0; i < categories.size(); i++) {
+			if (categories.get(i).getName() == logName) {
+				currentLog = categories.get(i);
+				found = true;
+			}
+		}
+		if (!found) {
+			currentLog = allTasksLog;
+		}
+		
 	}
 	
 	/**
@@ -130,22 +140,58 @@ public class Project {
 	 * @return A string array of all the category names
 	 */
 	public String[] getCategoryNames() {
-		return null;
+		String[] categoryNames = new String[categories.size()];
+		for (int i = 1; i < categories.size(); i++) {
+			categoryNames[i] = categories.get(i - 1).getName();
+		}
+		categoryNames[0] = allTasksLog.getName();
+		return categoryNames;
 	}
 	
 	/**
 	 * change the name of the category
 	 * @param categoryName name to be changed to 
+	 * @throws IllegalArgumentException if the categoryName parameter is a duplicate of another categories name
+	 * @throws IllegalArgumentException if the categoryName is null or empty or the same as the name of the alltasksLog.
+	 * @throws IllegalArgumentException if the current log is the allTasksLog
 	 */
 	public void editCategoryLogName(String categoryName) {
-		
+		for (int i = 0; i < categories.size(); i++) {
+			if (categories.get(i).getName().equals(categoryName)) {
+				throw new IllegalArgumentException("Invalid name.");
+			}
+		}
+		if (categoryName == null || categoryName.isEmpty() || categoryName == AllTasksLog.ALL_TASKS_NAME) {
+			throw new IllegalArgumentException("Invalid name.");
+		}
+		if (currentLog instanceof AllTasksLog) {
+			throw new IllegalArgumentException("The All Tasks log may not be edited.");
+		}
+		for (int i = 0; i < categories.size(); i++) {
+			if (categories.get(i).getName().equals(currentLog.getName())) {
+				CategoryLog category = categories.remove(i);
+				category.setTaskLogName(categoryName);
+				categories.add(category);
+				isChanged = true;	
+			}
+		}
 	}
 	
 	/**
 	 * Removes the current log category
+	 * @throws IllegalArgumentException if the current log is the alltasksLog
 	 */
 	public void removeCategoryLog() {
-		
+		if (currentLog instanceof AllTasksLog) {
+			throw new IllegalArgumentException("The All Tasks log may not be edited.");
+		}
+		for (int i = 0; i < categories.size(); i++) {
+			if (categories.get(i).getName().equals(currentLog.getName())) {
+				CategoryLog category = categories.remove(i);
+				currentLog = allTasksLog;
+				// FINISH THIS LATER
+			}
+		}	
 	}
 	
 	/**
@@ -153,7 +199,11 @@ public class Project {
 	 * @param t Task to be added
 	 */
 	public void addTask(Task t) {
-		
+		if (currentLog instanceof CategoryLog) {
+			currentLog.addTask(t);
+			allTasksLog.addTask(t);
+			isChanged = true;
+		}
 	}
 	
 	/**
@@ -164,7 +214,10 @@ public class Project {
 	 * @param taskDetails New description of the task
 	 */
 	public void editTask(int idx, String taskName, int taskDuration, String taskDetails) {
-		
+		currentLog.getTask(idx).setTaskTitle(taskName);
+		currentLog.getTask(idx).setTaskDuration(taskDuration);
+		currentLog.getTask(idx).setTaskDetails(taskDetails);
+		isChanged = true;
 	}
 	
 	/**
@@ -172,7 +225,9 @@ public class Project {
 	 * @param idx the index of the task to be removed
 	 */
 	public void removeTask(int idx) {
-		
+		currentLog.removeTask(idx);
+		allTasksLog.removeTask(idx);
+		isChanged = true;
 	}
 	
 	/**
