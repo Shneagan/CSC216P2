@@ -8,6 +8,7 @@ import edu.ncsu.csc216.wolf_tracker.model.log.AllTasksLog;
 import edu.ncsu.csc216.wolf_tracker.model.log.CategoryLog;
 import edu.ncsu.csc216.wolf_tracker.model.task.Task;
 import edu.ncsu.csc216.wolf_tracker.model.util.ISortedList;
+import edu.ncsu.csc216.wolf_tracker.model.util.LogList;
 import edu.ncsu.csc216.wolf_tracker.model.util.SortedList;
 
 /**
@@ -185,13 +186,20 @@ public class Project {
 		if (currentLog instanceof AllTasksLog) {
 			throw new IllegalArgumentException("The All Tasks log may not be edited.");
 		}
-		for (int i = 0; i < categories.size(); i++) {
-			if (categories.get(i).getName().equals(currentLog.getName())) {
-				CategoryLog category = categories.remove(i);
-				currentLog = allTasksLog;
-				// FINISH THIS LATER
-			}
-		}	
+	    String categoryName = currentLog.getName();
+	  	for (int i = 0; i < categories.size(); i++) {
+	    	if (categories.get(i).getName() == categoryName) {
+	    		categories.remove(i);
+	    	}
+	    }
+	  	for (int i = 0; i < allTasksLog.getTasks().size(); i++) {
+	    	if (allTasksLog.getTask(i).getCategoryName().equals(categoryName)) {
+	    		  allTasksLog.getTasks().removeLog(i);
+	    	}
+	    }
+	    
+	    currentLog = allTasksLog;
+	    isChanged = true;	
 	}
 	
 	/**
@@ -235,6 +243,26 @@ public class Project {
 	 * @return A 2D array of task objects
 	 */
 	public String[][] getMostRecentTasks() {
-		return null;
+		String[][] recentTasks = new String[categories.size()][3];
+		for (int i = 0; i < categories.size(); i++) {
+			CategoryLog category = categories.get(i);
+			
+			LogList<Task> tasks = category.getTasks();
+			
+			if (tasks.size() != 0) {
+				Task mostRecent = tasks.getLog(tasks.size() - 1);
+				recentTasks[i][0] = mostRecent.getTaskTitle();
+				recentTasks[i][1] = Integer.toString(mostRecent.getTaskDuration());
+				recentTasks[i][2] = mostRecent.getCategoryName();
+			}
+			else {
+				recentTasks[i][0] = "None";
+				recentTasks[i][1] = "";
+				recentTasks[i][2] = "";
+			}
+		}
+		
+		return recentTasks;
 	}
+
 }
