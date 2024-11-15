@@ -139,7 +139,8 @@ public abstract class AbstractTaskLog {
 		for (int i = 0; i < tasks.size(); i++) {
 			sum += tasks.getLog(i).getTaskDuration();
 		}
-		return sum / tasks.size();
+		double average = (double) sum / tasks.size();
+		return average;
 	}
 	
 	/**
