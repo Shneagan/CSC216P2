@@ -4,98 +4,102 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import edu.ncsu.csc216.wolf_tracker.model.task.Task;
+
 /**
  * Tests the abstract class AbstractTaskLog
  */
-class AbstractTaskLogTest {
+public class AbstractTaskLogTest {
 
-	/**
-	 * Tests constructing an AbstractTaskLog
-	 * and all invalid parameters
-	 */
-	@Test
-	void testAbstractTaskLog() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Tests the getName method
-	 */
-	@Test
-	void testGetName() {
-		fail("Not yet implemented");
-	}
 
 	/**
 	 * Tests the setTaskLogName method
 	 */
 	@Test
-	void testSetTaskLogName() {
-		fail("Not yet implemented");
+	public void testSetTaskLogName() {
+		AbstractTaskLog category = new CategoryLog("Design");
+		assertThrows(IllegalArgumentException.class, () -> category.setTaskLogName(null));
+		assertThrows(IllegalArgumentException.class, () -> category.setTaskLogName(""));
+		category.setTaskLogName("Test");
+		assertEquals("Test", category.getName());
+
 	}
 
-	/**
-	 * tests the getTasks method
-	 */
-	@Test
-	void testGetTasks() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Tests the addTask method
-	 */
-	@Test
-	void testAddTask() {
-		fail("Not yet implemented");
-	}
 
 	/**
 	 * Tests the setTask method
 	 */
 	@Test
-	void testSetTask() {
-		fail("Not yet implemented");
+	public void testSetTask() {
+		AbstractTaskLog category = new CategoryLog("Design");
+		Task t = new Task("Name", 20, "Details");
+		Task t2 = new Task("Name2", 25, "Details2");
+		Task t3 = new Task("Name3", 30, "Details3");
+		category.addTask(t);
+		category.addTask(t2);
+		category.setTask(1, t3);
+		assertEquals(t3, category.getTask(1));
 	}
 
 	/**
 	 * tests the removeTask method
 	 */
 	@Test
-	void testRemoveTask() {
-		fail("Not yet implemented");
+	public void testRemoveTask() {
+		AbstractTaskLog category = new CategoryLog("Design");
+		Task t = new Task("Name", 20, "Details");
+		Task t2 = new Task("Name2", 25, "Details2");
+		Task t3 = new Task("Name3", 30, "Details3");
+		category.addTask(t);
+		category.addTask(t2);
+		category.addTask(t3);
+		assertEquals(t3, category.removeTask(2));
 	}
 
-	/**
-	 * tests the getTask method
-	 */
-	@Test
-	void testGetTask() {
-		fail("Not yet implemented");
-	}
 
 	/**
 	 * tests the getTaskCount method
 	 */
 	@Test
-	void testGetTaskCount() {
-		fail("Not yet implemented");
+	public void testGetTaskCount() {
+		AbstractTaskLog category = new CategoryLog("Design");
+		Task t = new Task("Name", 20, "Details");
+		Task t2 = new Task("Name2", 25, "Details2");
+		Task t3 = new Task("Name3", 30, "Details3");
+		category.addTask(t);
+		category.addTask(t2);
+		category.addTask(t3);	
+		assertEquals(3, category.getTaskCount()); 
 	}
 
 	/**
 	 * tests the getMinDuration method for 3 tasks
 	 */
 	@Test
-	void testGetMinDuration() {
-		fail("Not yet implemented");
+	public void testGetMinDuration() {
+		AbstractTaskLog category = new CategoryLog("Design");
+		Task t = new Task("Name", 20, "Details");
+		Task t2 = new Task("Name2", 25, "Details2");
+		Task t3 = new Task("Name3", 30, "Details3");
+		category.addTask(t);
+		category.addTask(t2);
+		category.addTask(t3);	
+		assertEquals(20, category.getMinDuration());
 	}
 
 	/**
 	 * tests the getMaxDuration method for 3 tasks
 	 */
 	@Test
-	void testGetMaxDuration() {
-		fail("Not yet implemented");
+	public void testGetMaxDuration() {
+		AbstractTaskLog category = new CategoryLog("Design");
+		Task t = new Task("Name", 20, "Details");
+		Task t2 = new Task("Name2", 25, "Details2");
+		Task t3 = new Task("Name3", 30, "Details3");
+		category.addTask(t);
+		category.addTask(t2);
+		category.addTask(t3);	
+		assertEquals(30, category.getMaxDuration());
 	}
 
 	/**
@@ -103,7 +107,14 @@ class AbstractTaskLogTest {
 	 */
 	@Test
 	void testGetAvgDuration() {
-		fail("Not yet implemented");
+		AbstractTaskLog category = new CategoryLog("Design");
+		Task t = new Task("Name", 20, "Details");
+		Task t2 = new Task("Name2", 25, "Details2");
+		Task t3 = new Task("Name3", 30, "Details3");
+		category.addTask(t);
+		category.addTask(t2);
+		category.addTask(t3);
+		assertEquals(25.0, category.getAvgDuration());
 	}
 
 	/**
@@ -111,7 +122,14 @@ class AbstractTaskLogTest {
 	 */
 	@Test
 	void testGetTasksAsArray() {
-		fail("Not yet implemented");
+		AbstractTaskLog category = new CategoryLog("Design");
+		Task t = new Task("Name", 20, "Details");
+		category.addTask(t);
+		String[][] arr = category.getTasksAsArray();
+		assertEquals("Name", arr[0][0]);
+		assertEquals("20", arr[0][1]);
+		assertEquals("Design", arr[0][2]);
+
 	}
 
 	/**
@@ -119,7 +137,14 @@ class AbstractTaskLogTest {
 	 */
 	@Test
 	void testToString() {
-		fail("Not yet implemented");
+		AbstractTaskLog category = new CategoryLog("Design");
+		Task t = new Task("Name", 20, "Details");
+		Task t2 = new Task("Name2", 25, "Details2");
+		Task t3 = new Task("Name3", 30, "Details3");
+		category.addTask(t);
+		category.addTask(t2);
+		category.addTask(t3);
+		assertEquals("Design,3,20,30,25.0", category.toString());
 	}
 
 }

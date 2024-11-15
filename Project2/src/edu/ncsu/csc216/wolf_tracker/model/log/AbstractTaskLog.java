@@ -1,7 +1,6 @@
 package edu.ncsu.csc216.wolf_tracker.model.log;
 
 import edu.ncsu.csc216.wolf_tracker.model.task.Task;
-import edu.ncsu.csc216.wolf_tracker.model.util.ILogList;
 import edu.ncsu.csc216.wolf_tracker.model.util.LogList;
 
 /**
@@ -14,7 +13,7 @@ public abstract class AbstractTaskLog {
 	private String taskLogName;
 	
 	/** the List of tasks which uses a custom list implementation to operate */
-	private ILogList<Task> tasks;
+	private LogList<Task> tasks;
 
 	/**
 	 * Constructs a task log object
@@ -50,7 +49,7 @@ public abstract class AbstractTaskLog {
 	 * @return a list of task objects
 	 */
 	public LogList<Task> getTasks() {
-		return null;
+		return tasks;
 	}
 	
 	/**
@@ -148,7 +147,7 @@ public abstract class AbstractTaskLog {
 	 * @return a 2D array that contains info on all the tasks
 	 */
 	public String[][] getTasksAsArray() {
-		String[][] taskArray = new String[tasks.size()][2];
+		String[][] taskArray = new String[tasks.size()][3];
 		for (int i = 0; i < tasks.size(); i++) {
 			taskArray[i][0] = tasks.getLog(i).getTaskTitle();
 			taskArray[i][1] = Integer.toString(tasks.getLog(i).getTaskDuration());
@@ -162,6 +161,6 @@ public abstract class AbstractTaskLog {
 	 * @return string that holds info on all the tasks in the task log
 	 */
 	public String toString() {
-		return null;
+		return getName() + "," + getTaskCount() + "," + getMinDuration() + "," + getMaxDuration() + "," + getAvgDuration();
 	}
 }

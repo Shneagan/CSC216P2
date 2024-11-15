@@ -143,7 +143,7 @@ public class Project {
 	public String[] getCategoryNames() {
 		String[] categoryNames = new String[categories.size()];
 		for (int i = 1; i < categories.size(); i++) {
-			categoryNames[i] = categories.get(i - 1).getName();
+			categoryNames[i] = categories.get(i).getName();
 		}
 		categoryNames[0] = allTasksLog.getName();
 		return categoryNames;

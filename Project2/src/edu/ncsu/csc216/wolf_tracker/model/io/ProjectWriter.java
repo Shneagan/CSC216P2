@@ -1,9 +1,8 @@
 package edu.ncsu.csc216.wolf_tracker.model.io;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.Locale.Category;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import edu.ncsu.csc216.wolf_tracker.model.project.Project;
 import edu.ncsu.csc216.wolf_tracker.model.task.Task;
@@ -20,8 +19,25 @@ public class ProjectWriter {
 	 * @param project the Project object that we are pulling data from
 	 */
 	public static void writeProjectFile(File projectFile, Project project) {
+        try (FileWriter writer = new FileWriter(projectFile)) {
+            for (String categoryName : project.getCategoryNames()) {
+                writer.write("# " + categoryName + System.lineSeparator());
+            }
+            writer.write(System.lineSeparator()); 
 
-	}
+            for (int i = 1; i < project.getCategoryNames().length; i++) {
+                project.setCurrentTaskLog(project.getCategoryNames()[i]);
+                for (int j = 0; j < project.getCurrentLog().getTasks().size(); j++) {
+                    Task task = project.getCurrentLog().getTask(j);
+                    writer.write("* " + task.getTaskTitle() + "," + task.getTaskDuration() + "," +
+                            task.getCategoryName() + System.lineSeparator());
+                    writer.write(task.getTaskDetails() + System.lineSeparator());
+                }
+            }
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Unable to save project file.", e);
+        }
+    }
 	
 	/**
 	 * Writes the summary statistics to file form
@@ -29,6 +45,20 @@ public class ProjectWriter {
 	 * @param project the Project object that we are pulling the stats from
 	 */
 	public static void writeStatsFile(File statsFile, Project project) {
-		
-	}
+        // Prepare header and output buffer
+        StringBuilder output = new StringBuilder("Category,Count,Min,Max,Average\n");
+
+        try (FileWriter writer = new FileWriter(statsFile)) {
+            for (int i = 0; i < project.getCategoryNames().length; i++) {
+            	project.setCurrentTaskLog(project.getCategoryNames()[i]);
+            	
+            }
+
+            writer.write(output.toString());
+
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Unable to save file", e);
+        }
+    }
 }
+
