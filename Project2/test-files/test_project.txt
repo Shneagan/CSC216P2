@@ -1,0 +1,16 @@
+! CSC 216 Task Log
+# Debugging
+# Deployment
+# Design
+# Documentation
+# Implementation
+# System Test
+# Unit Test
+* Read Project 2 requirements,45,Design
+Read Project 2 requirements and identify candidate classes.\n"
+* Created CRC Cards,27,Design
+Identified the key classes and created CRC cards.
+* Implemented & Tested POJO,30,Implementation
+Implemented the POJO class.
+* Debugging Reader Bug,15,Debugging
+Debugged my file reader bug.

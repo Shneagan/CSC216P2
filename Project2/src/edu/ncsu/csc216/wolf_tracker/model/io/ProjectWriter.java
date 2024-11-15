@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import edu.ncsu.csc216.wolf_tracker.model.log.AbstractTaskLog;
 import edu.ncsu.csc216.wolf_tracker.model.project.Project;
 import edu.ncsu.csc216.wolf_tracker.model.task.Task;
 
@@ -51,7 +52,9 @@ public class ProjectWriter {
         try (FileWriter writer = new FileWriter(statsFile)) {
             for (int i = 0; i < project.getCategoryNames().length; i++) {
             	project.setCurrentTaskLog(project.getCategoryNames()[i]);
-            	
+            	AbstractTaskLog log = project.getCurrentLog();
+                output.append(log.toString()).append("\n");
+              	
             }
 
             writer.write(output.toString());

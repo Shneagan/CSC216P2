@@ -63,17 +63,16 @@ public class ProjectReader {
     		catch (IllegalArgumentException e) {
     			// Removes invalid categories
     		}
-    		
-    		categoryScan2.close();
-    		
+    		    		
     		while (categoryScan.hasNext()) {
     			String taskData = categoryScan.next().trim();
     			processTask(p, taskData);
     			
     		}
-    		categoryScan.close();
     		
     	}
+		categoryScan.close();
+		categoryScan2.close();
 		return p;
     	
     	
