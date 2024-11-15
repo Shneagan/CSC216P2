@@ -140,7 +140,7 @@ public abstract class AbstractTaskLog {
 			sum += tasks.getLog(i).getTaskDuration();
 		}
 		double average = (double) sum / tasks.size();
-		int decimalPlaces = 2;
+		int decimalPlaces = 1;
 		average = Math.round(average * Math.pow(10, decimalPlaces))
                 / Math.pow(10, decimalPlaces);
 		return average;
