@@ -42,7 +42,7 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
         }
 
         if (current != null && element.compareTo(current.data) == 0) {
-            throw new IllegalArgumentException("Cannot add duplicate element.");
+            throw new IllegalArgumentException("Invalid name.");
         }
 
         ListNode newNode = new ListNode(element, current);
