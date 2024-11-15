@@ -1,8 +1,12 @@
 package edu.ncsu.csc216.wolf_tracker.model.io;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Locale.Category;
 
 import edu.ncsu.csc216.wolf_tracker.model.project.Project;
+import edu.ncsu.csc216.wolf_tracker.model.task.Task;
 
 /**
  * Writes a project objects data to a File in string form
@@ -16,7 +20,7 @@ public class ProjectWriter {
 	 * @param project the Project object that we are pulling data from
 	 */
 	public static void writeProjectFile(File projectFile, Project project) {
-		
+
 	}
 	
 	/**

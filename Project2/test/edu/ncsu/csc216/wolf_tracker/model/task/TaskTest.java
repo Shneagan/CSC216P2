@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import edu.ncsu.csc216.wolf_tracker.model.log.CategoryLog;
+
 
 /**
  * tests the Task class
@@ -75,7 +77,8 @@ class TaskTest {
 	 */
 	@Test
 	void testGetTaskDetails() {
-		fail("Not yet implemented");
+		Task t = new Task("TaskName", 15, "TaskDetails");
+		assertEquals("TaskDetails", t.getTaskDetails());
 	}
 
 	/**
@@ -83,7 +86,12 @@ class TaskTest {
 	 */
 	@Test
 	void testSetTaskDetails() {
-		fail("Not yet implemented");
+		Task t = new Task("TaskName", 15, "TaskDetails");
+		assertThrows(IllegalArgumentException.class, () -> t.setTaskDetails(null));
+		assertThrows(IllegalArgumentException.class, () -> t.setTaskDetails(""));
+		t.setTaskDetails("NewTaskDetails");
+		assertEquals("NewTaskDetails", t.getTaskDetails());
+
 	}
 	
 	/**
@@ -91,7 +99,11 @@ class TaskTest {
 	 */
 	@Test
 	void testAddCategory() {
-		fail("Not yet implemented");
+		Task t = new Task("TaskName", 15, "TaskDetails");
+		CategoryLog category = new CategoryLog("Design");
+		assertThrows(IllegalArgumentException.class, () -> t.addCategory(null));
+		t.addCategory(category);
+		assertThrows(IllegalArgumentException.class, () -> t.addCategory(category));
 	}
 
 	/**
@@ -99,7 +111,12 @@ class TaskTest {
 	 */
 	@Test
 	void testGetCategoryName() {
-		fail("Not yet implemented");
+		Task t = new Task("TaskName", 15, "TaskDetails");
+		assertEquals("", t.getCategoryName());
+		CategoryLog category = new CategoryLog("Design");
+		t.addCategory(category);
+		assertEquals("Design", t.getCategoryName());
+
 	}
 
 	/**
@@ -107,7 +124,8 @@ class TaskTest {
 	 */
 	@Test
 	void testToString() {
-		fail("Not yet implemented");
+		Task t = new Task("TaskName", 15, "TaskDetails");
+		assertEquals("* TaskName,15,\nTaskDetails", t.toString());
 	}
 
 }

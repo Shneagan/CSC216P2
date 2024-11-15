@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import edu.ncsu.csc216.wolf_tracker.model.task.Task;
+
 /**
  * Tests the CategoryLog class which extends the AbstractTaskLog class
  */
@@ -14,7 +16,10 @@ class CategoryLogTest {
 	 */
 	@Test
 	void testAddTask() {
-		fail("Not yet implemented");
+		CategoryLog category = new CategoryLog("Design");
+		Task t = new Task("TaskName", 10, "TaskDetails");
+		category.addTask(t);
+		assertEquals(t, category.getTask(0));
 	}
 
 	/**
@@ -22,15 +27,16 @@ class CategoryLogTest {
 	 */
 	@Test
 	void testSetTask() {
-		fail("Not yet implemented");
-	}
+		CategoryLog category = new CategoryLog("Design");
+		Task t = new Task("TaskName", 10, "TaskDetails");
+		Task t2 = new Task("Task2", 20, "Task2Details");
+		Task t3 = new Task("Task3", 15, "Task3Details");
+		category.addTask(t);
+		category.addTask(t2);
+		category.setTask(1, t3);
+		assertEquals(t3, category.getTask(1));
+		assertEquals(t, category.getTask(0));
 
-	/**
-	 * Tests constructing a categorylog object
-	 */
-	@Test
-	void testCategoryLog() {
-		fail("Not yet implemented");
 	}
 
 	/**
@@ -38,7 +44,15 @@ class CategoryLogTest {
 	 */
 	@Test
 	void testCompareTo() {
-		fail("Not yet implemented");
+		CategoryLog category = new CategoryLog("Design");
+		CategoryLog category2 = new CategoryLog("Design");
+		CategoryLog category3 = new CategoryLog("Active");
+		CategoryLog category4 = new CategoryLog("Inactive");
+
+
+		assertEquals(0, category.compareTo(category2));
+		assertEquals(-1, category.compareTo(category4));
+		assertEquals(1, category.compareTo(category3));
 	}
 
 }

@@ -7,22 +7,18 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests the allTasksLog class that extends the AbstractTaskLog class
  */
-class AllTasksLogTest {
+public class AllTasksLogTest {
 
 	/**
 	 * tests setting the tasklogName field
 	 */
 	@Test
-	void testSetTaskLogName() {
-		fail("Not yet implemented");
+	public void testSetTaskLogName() {
+		AllTasksLog allTasksLog = new AllTasksLog();
+		assertThrows(IllegalArgumentException.class, () -> allTasksLog.setTaskLogName("Hello"));
+		allTasksLog.setTaskLogName("All Tasks");
+		assertEquals("All Tasks", allTasksLog.getName());
 	}
-
-	/**
-	 * Tests constructing an allTasksLog object
-	 */
-	@Test
-	void testAllTasksLog() {
-		fail("Not yet implemented");
-	}
+	
 
 }

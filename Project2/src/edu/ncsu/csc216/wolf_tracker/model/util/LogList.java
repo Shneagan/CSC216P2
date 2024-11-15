@@ -40,10 +40,16 @@ public class LogList<E> implements ILogList<E> {
 			ensureCapacity(size * 2);
 		}
 		
-		for (int i = 0; i < size - 1; i++) {
-			list[i] = list[i + 1];
+		if (size == 0) {
+			list[0] = element;
 		}
-		list[size - 1] = element;
+		else {
+			for (int i = this.size() - 1; i >= size - 1; i--) {
+				this.list[i + 1] = this.list[i];
+			}
+			this.list[size] = element;
+		}
+		
 		size++;
 	}
 
@@ -123,5 +129,6 @@ public class LogList<E> implements ILogList<E> {
 		for (int i = 0; i < this.size(); i++) {
 			newList[i] = this.list[i];
 		}
+		this.list = newList;
 	}
 }

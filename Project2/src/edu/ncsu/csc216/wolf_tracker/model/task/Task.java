@@ -116,7 +116,7 @@ public class Task {
 	 * @return a string of all task information
 	 */
 	public String toString() {
-		return "* " + taskTitle + "," + taskDuration + "," + category.toString() + "\n" + taskDetails;
+		return "* " + taskTitle + "," + taskDuration + "," + getCategoryName() + "\n" + taskDetails;
 	}
 	
 }

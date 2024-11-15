@@ -45,7 +45,15 @@ public class CategoryLog extends AbstractTaskLog implements Comparable<CategoryL
 	 */
 	@Override
 	public int compareTo(CategoryLog o) {
-        return this.getName().compareToIgnoreCase(o.getName());
+		if (this.getName().compareTo(o.getName()) == 0) {
+			return 0;
+		}
+		else if (this.getName().compareTo(o.getName()) < 0) {
+			return -1;
+		}
+		else {
+			return 1;
+		}
 
 	}
 
