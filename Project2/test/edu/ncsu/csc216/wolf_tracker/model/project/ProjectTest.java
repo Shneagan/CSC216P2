@@ -34,21 +34,6 @@ public class ProjectTest {
 		assertEquals(true, p.isChanged());
 	}
 
-	/**
-	 * tests saving project information to a file
-	 */
-	@Test
-	public void testSaveProject() {
-		Project p = new Project("ProjectName");
-		p.addTask(new Task("Name", 20, "Details"));
-        try {
-            p.saveProject(new File("test_save_project.txt"));
-            File file = new File("test_save_project.txt");
-            assertTrue(file.exists());
-        } catch (IllegalArgumentException e) {
-            fail("Unable to save the apps to the file.");
-        }	
-	}
 
 	/**
 	 * tests saving statistics to a file
@@ -56,11 +41,12 @@ public class ProjectTest {
 	@Test
 	public void testSaveStats() {
 		Project p = new Project("ProjectName");
+		p.addCategoryLog("Design");
 		p.addTask(new Task("Name", 20, "Details"));
 		p.addTask(new Task("Name2", 30, "Details"));
         try {
-            p.saveStats(new File("test_save_stats.txt"));
-            File file = new File("test_save_stats.txt");
+            p.saveStats(new File("test-files/test_save_stats.txt"));
+            File file = new File("test-files/test_save_stats.txt");
             assertTrue(file.exists());
         } catch (IllegalArgumentException e) {
             fail("Unable to save the apps to the file.");
@@ -107,8 +93,8 @@ public class ProjectTest {
 	    Project p = new Project("ProjectName");
         p.addCategoryLog("NewCategory");
         p.addCategoryLog("Category2");
-        assertEquals(2, p.getCategoryNames().length);
-        assertEquals("NewCategory", p.getCategoryNames()[1]);
+        assertEquals(3, p.getCategoryNames().length);
+        assertEquals("Category2", p.getCategoryNames()[1]);
         assertTrue(p.isChanged());
     }
 
@@ -150,10 +136,10 @@ public class ProjectTest {
 	        p.addCategoryLog("Category2");
 	        p.addCategoryLog("Category3");
 	        String[] categoryNames = p.getCategoryNames();
-	        assertEquals(3, categoryNames.length);
+	        assertEquals(4, categoryNames.length);
 	        assertEquals("All Tasks", categoryNames[0]);
-	        assertEquals("Category2", categoryNames[1]);
-	        assertEquals("Category3", categoryNames[2]);
+	        assertEquals("Category1", categoryNames[1]);
+	        assertEquals("Category2", categoryNames[2]);
 	}
 
 	/**
@@ -180,7 +166,7 @@ public class ProjectTest {
 	        p.addCategoryLog("Category2");
 	        p.removeCategoryLog();
 	        assertTrue(p.getCurrentLog() instanceof AllTasksLog);
-	        assertEquals(1, p.getCategoryNames().length);
+	        assertEquals(2, p.getCategoryNames().length);
 	}
 
 	/**

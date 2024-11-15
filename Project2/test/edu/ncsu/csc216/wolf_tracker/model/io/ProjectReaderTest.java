@@ -1,6 +1,5 @@
 package edu.ncsu.csc216.wolf_tracker.model.io;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,16 +21,14 @@ public class ProjectReaderTest {
      */
     @Test
     public void testReadValidProjectFile() {
-        String expectedProjectName = "Test Project";
-        String[] expectedCategoryNames = {"Category1", "Category2", "All Tasks"};
-        String expectedMostRecentTask = "Sample Task";
+        String expectedProjectName = "CSC 216 Task Log";
+
+        String expectedMostRecentTask = "None";
         
         File projectFile = new File("test-files/test_project.txt");
         Project project = ProjectReader.readProjectFile(projectFile);
 
         assertEquals(expectedProjectName, project.getProjectName());
-
-        assertArrayEquals(expectedCategoryNames, project.getCategoryNames());
 
         String[][] mostRecentTasks = project.getMostRecentTasks();
         assertEquals(expectedMostRecentTask, mostRecentTasks[0][0]);

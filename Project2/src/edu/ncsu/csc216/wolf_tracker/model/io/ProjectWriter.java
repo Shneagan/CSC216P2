@@ -21,18 +21,17 @@ public class ProjectWriter {
 	 */
 	public static void writeProjectFile(File projectFile, Project project) {
         try (FileWriter writer = new FileWriter(projectFile)) {
+        	writer.write("! " + project.getProjectName() + "\n");
             for (String categoryName : project.getCategoryNames()) {
-                writer.write("# " + categoryName + System.lineSeparator());
+                writer.write("# " + categoryName + "\n");
             }
-            writer.write(System.lineSeparator()); 
-
             for (int i = 1; i < project.getCategoryNames().length; i++) {
                 project.setCurrentTaskLog(project.getCategoryNames()[i]);
                 for (int j = 0; j < project.getCurrentLog().getTasks().size(); j++) {
                     Task task = project.getCurrentLog().getTask(j);
                     writer.write("* " + task.getTaskTitle() + "," + task.getTaskDuration() + "," +
-                            task.getCategoryName() + System.lineSeparator());
-                    writer.write(task.getTaskDetails() + System.lineSeparator());
+                            task.getCategoryName() + "\n");
+                    writer.write(task.getTaskDetails() + "\n");
                 }
             }
         } catch (IOException e) {
@@ -50,7 +49,8 @@ public class ProjectWriter {
         StringBuilder output = new StringBuilder("Category,Count,Min,Max,Average\n");
 
         try (FileWriter writer = new FileWriter(statsFile)) {
-            for (int i = 0; i < project.getCategoryNames().length; i++) {
+        	String[] categories = project.getCategoryNames();
+            for (int i = 1; i < categories.length; i++) {
             	project.setCurrentTaskLog(project.getCategoryNames()[i]);
             	AbstractTaskLog log = project.getCurrentLog();
                 output.append(log.toString()).append("\n");

@@ -43,7 +43,7 @@ public class ProjectReader {
     	fileContent = fileContent.substring(first + 1);
     	
     	Scanner categoryScan = new Scanner(fileContent);
-    	categoryScan.useDelimiter("\\\\r?\\\\n?[*]");
+    	categoryScan.useDelimiter("\\r?\\n?[*]");
     	
     	String categories = categoryScan.next();
     	Scanner categoryScan2 = new Scanner(categories);
@@ -87,24 +87,27 @@ public class ProjectReader {
      */
     private static void processTask(Project project, String task) {
        Scanner taskScan = new Scanner(task);
-       taskScan.useDelimiter(",");
+       String taskData = taskScan.nextLine();
+       Scanner taskInfoParser = new Scanner(taskData);
+       taskInfoParser.useDelimiter(",");
        String taskTitle = "";
        int duration = 0;
        String categoryName = "";
        String taskDetails = "";
        try {
-    	   taskTitle = taskScan.next();
-    	   duration = Integer.parseInt(taskScan.next());
-    	   categoryName = taskScan.next();
-    	   taskDetails = taskScan.next();
-    	   taskScan.close();
-       
+    	   taskTitle = taskInfoParser.next();
+    	   duration = Integer.parseInt(taskInfoParser.next());
+    	   categoryName = taskInfoParser.next();
        }
        catch (NoSuchElementException e) {
     	   taskScan.close();
+    	   taskInfoParser.close();
     	   throw new IllegalArgumentException("Unable to load file.");
        }
        
+       while (taskScan.hasNext()) {
+    	   taskDetails += taskScan.nextLine();
+       }
        
        try {
     	   Task t = new Task(taskTitle, duration, taskDetails);
@@ -115,6 +118,8 @@ public class ProjectReader {
        catch (IllegalArgumentException e) {
     	   // Removes invalid tasks
        }
+       taskInfoParser.close();
+       taskScan.close();
     }
 }
 

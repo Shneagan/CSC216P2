@@ -141,11 +141,11 @@ public class Project {
 	 * @return A string array of all the category names
 	 */
 	public String[] getCategoryNames() {
-		String[] categoryNames = new String[categories.size()];
-		for (int i = 1; i < categories.size(); i++) {
-			categoryNames[i] = categories.get(i).getName();
+		String[] categoryNames = new String[categories.size() + 1];
+		categoryNames[0] = AllTasksLog.ALL_TASKS_NAME;
+		for (int i = 1; i <= categories.size(); i++) {
+			categoryNames[i] = categories.get(i - 1).getName();
 		}
-		categoryNames[0] = allTasksLog.getName();
 		return categoryNames;
 	}
 	

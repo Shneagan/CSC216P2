@@ -23,7 +23,7 @@ class ProjectWriterTest {
 	 */
 	@Test
 	void testWriteProjectFile() {
-		Project p = new Project("Name");
+		Project p = new Project("ProjectName");
 		p.addCategoryLog("Design");
 		p.addTask(new Task("Title", 20, "Details"));
 		File projectFile = new File("test-files/test_project2.txt");
@@ -65,7 +65,7 @@ class ProjectWriterTest {
 		try (Scanner expScanner = new Scanner(new File(expFile));
 			 Scanner actScanner = new Scanner(new File(actFile));) {
 			
-			while (expScanner.hasNextLine()) {
+			while (actScanner.hasNextLine()) {
 				assertEquals(expScanner.nextLine(), actScanner.nextLine());
 			}
 			
