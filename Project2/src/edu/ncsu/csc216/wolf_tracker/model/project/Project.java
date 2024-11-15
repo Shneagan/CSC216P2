@@ -105,7 +105,7 @@ public class Project {
 	 */
 	public void addCategoryLog(String categoryName) {
 		if (categoryName == AllTasksLog.ALL_TASKS_NAME) {
-			throw new IllegalArgumentException("The All Tasks log may not be edited.");
+			throw new IllegalArgumentException("Invalid Name.");
 		}
 		CategoryLog newLog = new CategoryLog(categoryName);
 		currentLog = newLog;
@@ -187,7 +187,7 @@ public class Project {
 	 */
 	public void removeCategoryLog() {
 		if (currentLog instanceof AllTasksLog) {
-			throw new IllegalArgumentException("The All tasks log may not be edited.");
+			throw new IllegalArgumentException("The All Tasks log may not be deleted.");
 		}
 	    String categoryName = currentLog.getName();
 	  	for (int i = 0; i < categories.size(); i++) {
