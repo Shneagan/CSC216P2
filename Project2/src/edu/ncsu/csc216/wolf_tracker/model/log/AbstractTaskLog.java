@@ -105,6 +105,9 @@ public abstract class AbstractTaskLog {
 	 * @return integer number of time (in minutes)
 	 */
 	public int getMinDuration() {
+		if (tasks.size() == 0) {
+			return 0;
+		}
 		int min = 10000000;
 		for (int i = 0; i < tasks.size(); i++) {
 			Task t = tasks.getLog(i);
