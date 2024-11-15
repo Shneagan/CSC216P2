@@ -105,7 +105,7 @@ public class Project {
 	 */
 	public void addCategoryLog(String categoryName) {
 		if (categoryName == AllTasksLog.ALL_TASKS_NAME) {
-			throw new IllegalArgumentException("Invalid Name.");
+			throw new IllegalArgumentException("Invalid name.");
 		}
 		CategoryLog newLog = new CategoryLog(categoryName);
 		currentLog = newLog;
