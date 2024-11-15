@@ -22,8 +22,8 @@ public class ProjectWriter {
 	public static void writeProjectFile(File projectFile, Project project) {
         try (FileWriter writer = new FileWriter(projectFile)) {
         	writer.write("! " + project.getProjectName() + "\n");
-            for (String categoryName : project.getCategoryNames()) {
-                writer.write("# " + categoryName + "\n");
+            for (int i = 1; i < project.getCategoryNames().length; i++) {
+                writer.write("# " + project.getCategoryNames()[i] + "\n");
             }
             for (int i = 1; i < project.getCategoryNames().length; i++) {
                 project.setCurrentTaskLog(project.getCategoryNames()[i]);
