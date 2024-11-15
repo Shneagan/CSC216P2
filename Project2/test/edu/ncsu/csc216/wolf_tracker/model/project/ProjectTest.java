@@ -30,7 +30,7 @@ public class ProjectTest {
 		assertThrows(IllegalArgumentException.class, () -> new Project("All Tasks"));
 		Project p = new Project("ProjectName");
 		assertEquals("ProjectName", p.getProjectName());
-		assertEquals(true, p.getCurrentLog() instanceof AllTasksLog);
+		assertTrue(p.getCurrentLog() instanceof AllTasksLog);
 		assertEquals(true, p.isChanged());
 	}
 

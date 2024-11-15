@@ -106,6 +106,7 @@ public class LogListTest {
 		list.addLog(10);
 		list.addLog(20);
 		list.addLog(10);
+		assertEquals(12, list.size());
 	}
 
 }
