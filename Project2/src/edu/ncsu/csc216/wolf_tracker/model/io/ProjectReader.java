@@ -64,13 +64,13 @@ public class ProjectReader {
     			// Removes invalid categories
     		}
     		    		
-    		while (categoryScan.hasNext()) {
-    			String taskData = categoryScan.next().trim();
-    			processTask(p, taskData);
-    			
-    		}
     		
     	}
+		while (categoryScan.hasNext()) {
+			String taskData = categoryScan.next().trim();
+			processTask(p, taskData);
+			
+		}
 		categoryScan.close();
 		categoryScan2.close();
 		return p;
