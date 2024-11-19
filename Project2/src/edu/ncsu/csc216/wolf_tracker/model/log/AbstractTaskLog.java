@@ -168,6 +168,16 @@ public abstract class AbstractTaskLog {
 	 * @return string that holds info on all the tasks in the task log
 	 */
 	public String toString() {
-		return getName() + "," + getTaskCount() + "," + getMinDuration() + "," + getMaxDuration() + "," + getAvgDuration();
+		String minDur = "" + getMinDuration();
+		String maxDur = "" + getMaxDuration();
+		String avgDur = "" + getAvgDuration();
+		if (getMinDuration() == 0) {
+			minDur = "";
+		}
+		if (getMaxDuration() == 0) {
+			maxDur = "";
+			avgDur = "";
+		}
+		return getName() + "," + getTaskCount() + "," + minDur + "," + maxDur + "," + avgDur;
 	}
 }
