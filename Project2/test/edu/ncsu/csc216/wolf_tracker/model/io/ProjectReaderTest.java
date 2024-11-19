@@ -60,6 +60,6 @@ public class ProjectReaderTest {
     	categoryNames[6] = "System Test";
     	categoryNames[7] = "Unit Test";
     	assertEquals("CSC 216 Task Log", project.getProjectName());
-    	assertTrue(categoryNames[3].equals(project.getCategoryNames()[3]));
+    	assertEquals(categoryNames[3], project.getCategoryNames()[3]);
     }
 }
