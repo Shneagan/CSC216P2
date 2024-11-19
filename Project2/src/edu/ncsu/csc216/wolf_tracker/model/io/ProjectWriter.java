@@ -54,9 +54,10 @@ public class ProjectWriter {
             	project.setCurrentTaskLog(project.getCategoryNames()[i]);
             	AbstractTaskLog log = project.getCurrentLog();
                 output.append(log.toString()).append("\n");
-              	
             }
-
+            project.setCurrentTaskLog("All Tasks");
+        	AbstractTaskLog log = project.getCurrentLog();
+            output.append(log.toString());
             writer.write(output.toString());
 
         } catch (IOException e) {
