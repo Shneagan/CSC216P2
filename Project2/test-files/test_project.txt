@@ -7,7 +7,7 @@
 # System Test
 # Unit Test
 * Read Project 2 requirements,45,Design
-Read Project 2 requirements and identify candidate classes.\n"
+Read Project 2 requirements and identify candidate classes.
 * Created CRC Cards,27,Design
 Identified the key classes and created CRC cards.
 * Implemented & Tested POJO,30,Implementation

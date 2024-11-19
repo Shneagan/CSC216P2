@@ -94,8 +94,11 @@ public class Task {
 	 * @throws IllegalArgumentException if parameter is null or category is already assigned.
 	 */
 	public void addCategory(CategoryLog categoryLog) {
-		if (categoryLog == null || this.category != null) {
+		if (categoryLog == null) {
 			throw new IllegalArgumentException("Incomplete task information.");
+		}
+		if (this.category != null && !categoryLog.getName().equals(this.category.getName())) {
+			throw new IllegalArgumentException("Incomplete task information");
 		}
 		this.category = categoryLog;
 	}

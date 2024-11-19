@@ -103,9 +103,10 @@ class TaskTest {
 	void testAddCategory() {
 		Task t = new Task("TaskName", 15, "TaskDetails");
 		CategoryLog category = new CategoryLog("Design");
+		CategoryLog category2 = new CategoryLog("Implementation");
 		assertThrows(IllegalArgumentException.class, () -> t.addCategory(null));
 		t.addCategory(category);
-		assertThrows(IllegalArgumentException.class, () -> t.addCategory(category));
+		assertThrows(IllegalArgumentException.class, () -> t.addCategory(category2));
 	}
 
 	/**

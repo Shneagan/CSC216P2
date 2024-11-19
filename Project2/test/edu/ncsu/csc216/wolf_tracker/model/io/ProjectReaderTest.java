@@ -23,16 +23,11 @@ public class ProjectReaderTest {
     public void testReadValidProjectFile() {
         String expectedProjectName = "CSC 216 Task Log";
 
-        String expectedMostRecentTask = "None";
-        
         File projectFile = new File("test-files/test_project.txt");
         Project project = ProjectReader.readProjectFile(projectFile);
-
+        project.setCurrentTaskLog("Design");
         assertEquals(expectedProjectName, project.getProjectName());
-
-        String[][] mostRecentTasks = project.getMostRecentTasks();
-        assertEquals(expectedMostRecentTask, mostRecentTasks[0][0]);
-        assertEquals(expectedMostRecentTask, mostRecentTasks[1][0]);
+        assertEquals(2, project.getCurrentLog().getTaskCount());
 
         assertTrue(project.isChanged());
     }
@@ -46,5 +41,25 @@ public class ProjectReaderTest {
         assertThrows(IllegalArgumentException.class, () -> {
             ProjectReader.readProjectFile(nonExistentFile);
         });
+    }
+    
+    /**
+     * Tests project1.txt
+     */
+    @Test
+    public void testProject1() {
+    	File project1File = new File("test-files/project1.txt");
+    	Project project = ProjectReader.readProjectFile(project1File);
+    	String[] categoryNames = new String[8];
+    	categoryNames[0] = "All Tasks";
+    	categoryNames[1] = "Debugging";
+    	categoryNames[2] = "Deployment";
+    	categoryNames[3] = "Design";
+    	categoryNames[4] = "Documentation";
+    	categoryNames[5] = "Implementation";
+    	categoryNames[6] = "System Test";
+    	categoryNames[7] = "Unit Test";
+    	assertEquals("CSC 216 Task Log", project.getProjectName());
+    	assertTrue(categoryNames[3].equals(project.getCategoryNames()[3]));
     }
 }

@@ -128,9 +128,10 @@ public class Project {
 	public void setCurrentTaskLog(String logName) {
 		boolean found = false;
 		for (int i = 0; i < categories.size(); i++) {
-			if (categories.get(i).getName() == logName) {
+			if (categories.get(i).getName().equals(logName)) {
 				currentLog = categories.get(i);
 				found = true;
+				break;
 			}
 		}
 		if (!found) {
