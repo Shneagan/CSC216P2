@@ -114,6 +114,7 @@ public class ProjectReader {
     	   t.addCategory(new CategoryLog(categoryName));
     	   project.setCurrentTaskLog(t.getCategoryName());
     	   project.addTask(t);
+    	   project.setCurrentTaskLog("All Tasks");
        }
        catch (IllegalArgumentException e) {
     	   // Removes invalid tasks
