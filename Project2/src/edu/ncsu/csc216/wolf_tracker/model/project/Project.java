@@ -237,7 +237,9 @@ public class Project {
 	 * @param idx the index of the task to be removed
 	 */
 	public void removeTask(int idx) {
-		currentLog.removeTask(idx);
+		if (!(currentLog instanceof AllTasksLog)) {
+			currentLog.removeTask(idx);
+		}
 		allTasksLog.removeTask(idx);
 		isChanged = true;
 	}
