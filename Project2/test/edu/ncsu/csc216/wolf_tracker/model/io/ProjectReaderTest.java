@@ -8,7 +8,6 @@ import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
-import edu.ncsu.csc216.wolf_tracker.model.log.AllTasksLog;
 import edu.ncsu.csc216.wolf_tracker.model.project.Project;
 
 /**
