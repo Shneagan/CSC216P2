@@ -8,6 +8,7 @@ import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
+import edu.ncsu.csc216.wolf_tracker.model.log.AllTasksLog;
 import edu.ncsu.csc216.wolf_tracker.model.project.Project;
 
 /**
@@ -61,5 +62,21 @@ public class ProjectReaderTest {
     	categoryNames[7] = "Unit Test";
     	assertEquals("CSC 216 Task Log", project.getProjectName());
     	assertEquals(categoryNames[3], project.getCategoryNames()[3]);
+    }
+    
+    /**
+     * Tests a TS Test
+     * 
+     */
+    @Test
+    public void testRemoveTask() {
+    	File project1File = new File("test-files/project1.txt");
+    	Project project = ProjectReader.readProjectFile(project1File);  
+    	project.setCurrentTaskLog("Design");
+    	project.removeTask(3);
+    	project.setCurrentTaskLog("All Tasks");
+    	assertEquals("CSC 216 Task Log", project.getProjectName());
+
+    	
     }
 }

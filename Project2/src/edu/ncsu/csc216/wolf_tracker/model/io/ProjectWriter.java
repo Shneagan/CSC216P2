@@ -45,8 +45,7 @@ public class ProjectWriter {
 	 * @param project the Project object that we are pulling the stats from
 	 */
 	public static void writeStatsFile(File statsFile, Project project) {
-        // Prepare header and output buffer
-        StringBuilder output = new StringBuilder("Category,Count,Min,Max,Average\n");
+           StringBuilder output = new StringBuilder("Category,Count,Min,Max,Average\n");
 
         try (FileWriter writer = new FileWriter(statsFile)) {
         	String[] categories = project.getCategoryNames();
