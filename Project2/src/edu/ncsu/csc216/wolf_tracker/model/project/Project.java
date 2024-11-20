@@ -239,8 +239,24 @@ public class Project {
 	public void removeTask(int idx) {
 		if (!(currentLog instanceof AllTasksLog)) {
 			currentLog.removeTask(idx);
+			allTasksLog.removeTask(idx);
+
 		}
-		allTasksLog.removeTask(idx);
+		else {
+	        Task taskToRemove = allTasksLog.getTask(idx);
+			allTasksLog.removeTask(idx);
+	        for (int i = 0; i < categories.size(); i++) {
+	            CategoryLog category = categories.get(i);
+	            LogList<Task> tasks = category.getTasks();
+	            for (int j = 0; j < tasks.size(); j++) {
+	                if (tasks.getLog(j).equals(taskToRemove)) {
+	                    tasks.removeLog(j);
+	                    break; 
+	                }
+	            }
+	        }
+		}
+		
 		isChanged = true;
 	}
 	

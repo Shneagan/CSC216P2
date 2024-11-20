@@ -11,6 +11,7 @@ import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
+import edu.ncsu.csc216.wolf_tracker.model.io.ProjectReader;
 import edu.ncsu.csc216.wolf_tracker.model.log.AllTasksLog;
 import edu.ncsu.csc216.wolf_tracker.model.log.CategoryLog;
 import edu.ncsu.csc216.wolf_tracker.model.task.Task;
@@ -233,5 +234,21 @@ public class ProjectTest {
 	        assertEquals("Task2", recentTasks[0][0]);
 	        assertEquals("60", recentTasks[0][1]);
 	        assertEquals("Category1", recentTasks[0][2]);	}
+	
+	
+	/**
+	 * Tests removeTask()
+	 */
+	@Test
+	void testRemoveTask2() {
+		File projectFile = new File("test-files/project1.txt");
+		Project p = ProjectReader.readProjectFile(projectFile);
+		p.setCurrentTaskLog("Design");
+		p.removeTask(3);
+		p.setCurrentTaskLog("All Tasks");
+		p.removeTask(9);
+		p.setCurrentTaskLog("Unit Test");
+		assertEquals(0, p.getCurrentLog().getTaskCount());
+	}
 
 }
