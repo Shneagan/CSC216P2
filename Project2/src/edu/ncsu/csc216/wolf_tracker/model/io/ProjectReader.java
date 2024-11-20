@@ -2,6 +2,7 @@ package edu.ncsu.csc216.wolf_tracker.model.io;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import edu.ncsu.csc216.wolf_tracker.model.log.CategoryLog;
@@ -104,7 +105,10 @@ public class ProjectReader {
        catch (NumberFormatException e) {
     	   taskScan.close();
     	   taskInfoParser.close();
-    	   throw new IllegalArgumentException("Unable to load file.");
+       }
+       catch (NoSuchElementException e) {
+    	   taskScan.close();
+    	   taskInfoParser.close();
        }
        
        while (taskScan.hasNext()) {
