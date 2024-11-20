@@ -2,7 +2,6 @@ package edu.ncsu.csc216.wolf_tracker.model.io;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import edu.ncsu.csc216.wolf_tracker.model.log.CategoryLog;
