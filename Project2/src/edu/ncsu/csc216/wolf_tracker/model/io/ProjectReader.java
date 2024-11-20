@@ -107,11 +107,6 @@ public class ProjectReader {
     	   taskInfoParser.close();
     	   throw new IllegalArgumentException("Unable to load file.");
        }
-       catch (NumberFormatException e) {
-    	   taskScan.close();
-    	   taskInfoParser.close();
-    	   throw new IllegalArgumentException("Cannot convert to integer.");
-       }
        
        while (taskScan.hasNext()) {
     	   taskDetails += taskScan.nextLine();
