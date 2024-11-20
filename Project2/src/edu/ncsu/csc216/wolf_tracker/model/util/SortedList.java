@@ -59,7 +59,7 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 * removes an element from the list at the index parameter provided
 	 * @param idx the index provided
 	 * @return the element that is removed
-	 * @throws IndexOutOfBoundsExeption if index is negative or greater than size of list
+	 * @throws IndexOutOfBoundsException if index is negative or greater than size of list
 	 */
 	@Override
 	public E remove(int idx) {
