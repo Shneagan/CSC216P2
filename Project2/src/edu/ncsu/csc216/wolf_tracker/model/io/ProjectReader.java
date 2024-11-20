@@ -103,12 +103,10 @@ public class ProjectReader {
     	   categoryName = taskInfoParser.next();
        }
        catch (NumberFormatException e) {
-    	   taskScan.close();
-    	   taskInfoParser.close();
+    	   // Skip
        }
        catch (NoSuchElementException e) {
-    	   taskScan.close();
-    	   taskInfoParser.close();
+    	   // Skip
        }
        
        while (taskScan.hasNext()) {
