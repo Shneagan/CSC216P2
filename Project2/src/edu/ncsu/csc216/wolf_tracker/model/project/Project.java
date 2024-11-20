@@ -107,6 +107,11 @@ public class Project {
 		if (categoryName == AllTasksLog.ALL_TASKS_NAME) {
 			throw new IllegalArgumentException("Invalid name.");
 		}
+		for (int i = 0; i < categories.size(); i++) {
+			if (categories.get(i).getName().equals(categoryName)) {
+				throw new IllegalArgumentException("Invalid name.");
+			}
+		}
 		CategoryLog newLog = new CategoryLog(categoryName);
 		currentLog = newLog;
 		categories.add(newLog);

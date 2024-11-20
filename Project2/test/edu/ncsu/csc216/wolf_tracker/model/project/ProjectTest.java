@@ -251,4 +251,17 @@ public class ProjectTest {
 		assertEquals(0, p.getCurrentLog().getTaskCount());
 	}
 
+	
+	/**
+	 * Tests addCategoryLog 
+	 */
+	@Test
+	void testAddCategoryLog2() {
+		File projectFile = new File("test-files/project1.txt");
+		Project p = ProjectReader.readProjectFile(projectFile);
+		p.addCategoryLog("Requirements");
+		Exception e = assertThrows(IllegalArgumentException.class, () -> p.addCategoryLog("Requirements"));
+		assertEquals("Invalid name.", e.getMessage()); 
+
+	}
 }
