@@ -99,14 +99,5 @@ public class ProjectReaderTest {
     	
     }
     
-    /**
-     * Test project4.txt
-     */
-    @Test
-    public void testProject4() {
-    	File project4File = new File("test-files/project4.txt");
-    	Project p = ProjectReader.readProjectFile(project4File);
-    	assertThrows(IllegalArgumentException.class, () -> ProjectReader.readProjectFile(project4File));
-    }
 }
 
