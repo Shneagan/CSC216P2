@@ -102,10 +102,9 @@ public class ProjectReader {
     	   duration = Integer.parseInt(taskInfoParser.next());
     	   categoryName = taskInfoParser.next();
        }
-       catch (NoSuchElementException e) {
+       catch (NumberFormatException e) {
     	   taskScan.close();
     	   taskInfoParser.close();
-    	   throw new IllegalArgumentException("Unable to load file.");
        }
        
        while (taskScan.hasNext()) {
