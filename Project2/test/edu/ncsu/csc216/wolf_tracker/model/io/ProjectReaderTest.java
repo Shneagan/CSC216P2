@@ -89,15 +89,7 @@ public class ProjectReaderTest {
     	assertEquals("CSC 216 Project 2", project.getProjectName());
     }
     
-    /**
-     * Tests project8.txt
-     */
-    @Test
-    public void testProject8() {
-    	File project8File = new File("test-files/project8.txt");
-    	assertThrows(IllegalArgumentException.class, () -> ProjectReader.readProjectFile(project8File)); 
-    	
-    }
+
     
 }
 

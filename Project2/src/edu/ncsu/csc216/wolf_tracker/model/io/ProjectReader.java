@@ -105,6 +105,7 @@ public class ProjectReader {
        catch (NumberFormatException e) {
     	   taskScan.close();
     	   taskInfoParser.close();
+    	   throw new IllegalArgumentException("Invalid duration");
        }
        catch (NoSuchElementException e) {
     	   taskScan.close();
