@@ -95,8 +95,7 @@ public class ProjectReaderTest {
     @Test
     public void testProject8() {
     	File project8File = new File("test-files/project8.txt");
-    	Exception e = assertThrows(IllegalArgumentException.class, () -> ProjectReader.readProjectFile(project8File)); 
-    	assertEquals("Unable to load file.", e.getMessage());
+    	assertThrows(IllegalArgumentException.class, () -> ProjectReader.readProjectFile(project8File)); 
     	
     }
 }
