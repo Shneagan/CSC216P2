@@ -261,10 +261,9 @@ public class Project {
 				recentTasks[i][2] = mostRecent.getCategoryName();
 			}
 			else {
-				Task mostRecent = tasks.getLog(tasks.size() - 1);
 				recentTasks[i][0] = "None";
 				recentTasks[i][1] = "";
-				recentTasks[i][2] = mostRecent.getCategoryName();
+				recentTasks[i][2] = category.getName();
 			}
 		}
 		
