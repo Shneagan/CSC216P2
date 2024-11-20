@@ -89,7 +89,5 @@ public class ProjectReaderTest {
     	assertEquals("CSC 216 Project 2", project.getProjectName());
     }
     
-
-    
 }
 
