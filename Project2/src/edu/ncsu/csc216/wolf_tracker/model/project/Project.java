@@ -254,7 +254,6 @@ public class Project {
 			CategoryLog category = categories.get(i);
 			
 			LogList<Task> tasks = category.getTasks();
-			
 			if (tasks.size() != 0) {
 				Task mostRecent = tasks.getLog(tasks.size() - 1);
 				recentTasks[i][0] = mostRecent.getTaskTitle();
@@ -262,9 +261,10 @@ public class Project {
 				recentTasks[i][2] = mostRecent.getCategoryName();
 			}
 			else {
+				Task mostRecent = tasks.getLog(tasks.size() - 1);
 				recentTasks[i][0] = "None";
 				recentTasks[i][1] = "";
-				recentTasks[i][2] = "";
+				recentTasks[i][2] = mostRecent.getCategoryName();
 			}
 		}
 		

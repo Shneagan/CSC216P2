@@ -68,13 +68,15 @@ public class ProjectReaderTest {
      * 
      */
     @Test
-    public void testRemoveTask() {
+    public void testRecentTask() {
     	File project1File = new File("test-files/project1.txt");
     	Project project = ProjectReader.readProjectFile(project1File);  
     	project.setCurrentTaskLog("Design");
     	project.removeTask(3);
     	project.setCurrentTaskLog("All Tasks");
     	assertEquals("CSC 216 Task Log", project.getProjectName());
+    	String[][] mostRecent = project.getMostRecentTasks();
+    	assertEquals(mostRecent[0][0], "Debugging Reader Bug");
 
     	
     }
