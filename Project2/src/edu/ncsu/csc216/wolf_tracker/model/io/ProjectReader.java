@@ -104,6 +104,7 @@ public class ProjectReader {
        catch (NumberFormatException e) {
     	   taskScan.close();
     	   taskInfoParser.close();
+    	   throw new IllegalArgumentException("Unable to load file.");
        }
        
        while (taskScan.hasNext()) {
