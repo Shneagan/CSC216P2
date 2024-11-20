@@ -1,3 +1,0 @@
-Category,Count,Min,Max,Average
-Design,2,20,30,25.0
-All Tasks,2,20,30,25.0
