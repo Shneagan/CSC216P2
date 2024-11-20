@@ -60,6 +60,7 @@ class ProjectWriterTest {
 	 * Helper method to compare two files for the same contents
 	 * @param expFile expected output
 	 * @param actFile actual output
+	 * @throws IllegalArgumentException if the files cannot be found
 	 */
 	private void checkFiles(String expFile, String actFile) {
 		try (Scanner expScanner = new Scanner(new File(expFile));

@@ -102,6 +102,8 @@ public class Project {
 	/**
 	 * Adds a category to the list of categories
 	 * @param categoryName name of the category to be added
+	 * @throws IllegalArgumentException if parameter name is the same as "All Tasks" string
+	 * @throws IllegalArgumentException if the parameter name already exists in the category list
 	 */
 	public void addCategoryLog(String categoryName) {
 		if (categoryName == AllTasksLog.ALL_TASKS_NAME) {

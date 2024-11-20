@@ -19,6 +19,7 @@ public class ProjectReader {
 	 * reads in a file and turns the string text into a Project object 
 	 * @param file the file object that is being read in
 	 * @return A project object that contains all the info in the file
+	 * @throws IllegalArgumentException if the file format is invalid
 	 */
     public static Project readProjectFile(File file) {
     	String projectName = "";
