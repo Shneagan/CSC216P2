@@ -76,8 +76,16 @@ public class ProjectReaderTest {
     	project.setCurrentTaskLog("All Tasks");
     	assertEquals("CSC 216 Task Log", project.getProjectName());
     	String[][] mostRecent = project.getMostRecentTasks();
-    	assertEquals(mostRecent[0][0], "Debugging Reader Bug");
-
-    	
+    	assertEquals(mostRecent[0][0], "Debugging Reader Bug");   	
+    }
+    
+    /**
+     * Tests project0.txt
+     */
+    @Test
+    public void testProject0() {
+    	File project0File = new File("test-files/project0.txt");
+    	Project project = ProjectReader.readProjectFile(project0File);  
+    	assertEquals("CSC 216 Project 2", project.getProjectName());
     }
 }

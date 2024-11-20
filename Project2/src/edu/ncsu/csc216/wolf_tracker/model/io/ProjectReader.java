@@ -45,34 +45,37 @@ public class ProjectReader {
     	Scanner categoryScan = new Scanner(fileContent);
     	categoryScan.useDelimiter("\\r?\\n?[*]");
     	
-    	String categories = categoryScan.next();
-    	Scanner categoryScan2 = new Scanner(categories);
-    	while (categoryScan2.hasNextLine()) {
-    		String line = categoryScan2.nextLine();
-    		if (line.charAt(0) != '#') {
-    			categoryScan2.close();
-    			categoryScan.close();
-    			throw new IllegalArgumentException("Unable to load file.");
+    	if (categoryScan.hasNextLine()) {
+    		String categories = categoryScan.next();
+        	Scanner categoryScan2 = new Scanner(categories);
+        	while (categoryScan2.hasNextLine()) {
+        		String line = categoryScan2.nextLine();
+        		if (line.charAt(0) != '#') {
+        			categoryScan2.close();
+        			categoryScan.close();
+        			throw new IllegalArgumentException("Unable to load file.");
+        		}
+        		
+        		String categoryName = line.substring(1).strip();
+        		
+        		try {
+        			p.addCategoryLog(categoryName);
+        		}
+        		catch (IllegalArgumentException e) {
+        			// Removes invalid categories
+        		}
+        		    		
+        		
+        	}
+    		while (categoryScan.hasNext()) {
+    			String taskData = categoryScan.next().trim();
+    			processTask(p, taskData);
+    			
     		}
-    		
-    		String categoryName = line.substring(1).strip();
-    		
-    		try {
-    			p.addCategoryLog(categoryName);
-    		}
-    		catch (IllegalArgumentException e) {
-    			// Removes invalid categories
-    		}
-    		    		
-    		
+    		categoryScan2.close();
+
     	}
-		while (categoryScan.hasNext()) {
-			String taskData = categoryScan.next().trim();
-			processTask(p, taskData);
-			
-		}
-		categoryScan.close();
-		categoryScan2.close();
+    	categoryScan.close();
 		return p;
     	
     	
